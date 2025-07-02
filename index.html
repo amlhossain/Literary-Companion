@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Literary Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Warm Neutral (Paperwhite, Stone, Muted Steel Blue) -->
+    <!-- Application Structure Plan: A single-page application with a clean, tab-based navigation system. The header contains links to switch between the three main literary works ("The Sands of Dee," "Time, You Old Gipsy Man," and "The Merchant of Venice"). Clicking a tab displays the relevant content and hides the others, creating a focused and organized user experience. Within each content section, questions and answers are presented directly beneath each other with distinct styling, removing the need for clicks and enhancing immediate readability and visual appeal. -->
+    <!-- Visualization & Content Choices: The source material is entirely literary, so traditional data charts are not applicable. The primary goal is enhancing readability and direct consumption of text.
+        - "The Sands of Dee" & "Time, You Old Gipsy Man" -> Goal: Present poetic works. -> Method: Poem text in a <pre> tag to preserve line breaks. Q&A presented directly with clear visual separation. -> Interaction: Users click a tab to view the poem, then read questions and answers sequentially. -> Justification: This respects the poetic structure and makes the analysis immediately accessible and visually distinct.
+        - "The Merchant of Venice" -> Goal: Present a multi-part story. -> Method: The three-part story is grouped under a single tab, presented as prose with clear subheadings. Its Q&A is also presented directly. -> Interaction: Users navigate to the story and can read through the parts sequentially, with answers readily available for comprehension. -> Justification: Breaks down a longer narrative and its analysis into a cohesive section, optimized for continuous reading.
+        - All visual elements are built with semantic HTML and styled with Tailwind CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            background-color: #F8F5F2; /* Paperwhite */
+            color: #374151; /* Cool Gray 700 */
+        }
+        .tab-btn.active {
+            background-color: #4682B4; /* Muted Steel Blue */
+            color: #FFFFFF;
+        }
+        .tab-btn {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .q-block {
+            background-color: #F0F5F7; /* Light blue-gray for question */
+            border-left: 4px solid #4682B4; /* Accent color border */
+            padding: 1rem;
+            border-radius: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .a-block {
+            background-color: #FFFFFF; /* White for answer */
+            border: 1px solid #E5E7EB; /* Light border */
+            padding: 1rem;
+            border-radius: 0.25rem;
+            margin-bottom: 1.5rem; /* More space after answer */
+        }
+        .q-block strong {
+            color: #1F2937; /* Darker text for question */
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800">Literary Companion</h1>
+            <p class="text-lg text-gray-600 mt-2">An Interactive Guide to Unit 11</p>
+            <p class="text-md text-gray-500 mt-1">Created by Muhammad Hossain</p>
+        </header>
+
+        <nav class="flex justify-center border-b-2 border-gray-200 mb-8">
+            <button class="tab-btn active text-lg font-medium py-3 px-6 -mb-0.5" onclick="openTab(event, 'sandsOfDee')">The Sands of Dee</button>
+            <button class="tab-btn text-lg font-medium py-3 px-6 -mb-0.5" onclick="openTab(event, 'gipsyMan')">Time, You Old Gipsy Man</button>
+            <button class="tab-btn text-lg font-medium py-3 px-6 -mb-0.5" onclick="openTab(event, 'merchantOfVenice')">The Merchant of Venice</button>
+        </nav>
+
+        <main>
+            <div id="sandsOfDee" class="tab-content">
+                <div class="bg-stone-100 p-6 rounded-lg shadow-md">
+                    <h2 class="text-3xl font-bold mb-1">The Sands of Dee</h2>
+                    <p class="text-md text-gray-500 mb-6">Unit 11, Lesson 3</p>
+                    <pre class="whitespace-pre-wrap font-serif text-lg leading-relaxed bg-white p-4 rounded mb-6 shadow-sm">"O Mary, go and call the cattle home,
+And call the cattle home, And call the cattle home Across the sands of Dee!"
+The western wind was wild and dank with foam, And all alone went she.
+The western tide crept up along the sand, And o'er and o'er the sand, And round and round the sand, As far as eye could see. The rolling mist came down and hid the land And never home came she.
+"Oh! Is it weed, or fish, or floating hair,
+A tress of golden hair, A drowned maiden's hair Above the nets at sea?
+Was never salmon yet that shone so fair Among the stakes of Dee."
+They rowed her in across the rolling foam,
+The cruel crawling foam,
+The cruel hungry foam,
+To her grave beside the sea:
+But still the boatman hear her call the cattle home Across the sands of Dee</pre>
+                    <div class="qna-section mt-8">
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-700">Questions & Answers</h3>
+                        <div class="q-block">
+                            <p><strong>1. What was the weather like when Mary went to bring the cattle home?</strong></p>
+                        </div>
+                        <div class="a-block">
+                            <p>The weather was wild, with a "western wind" that was "dank with foam."</p>
+                        </div>
+                        <div class="q-block">
+                            <p><strong>2. Explain why the poet repeated several words, phrases and sentences.</strong></p>
+                        </div>
+                        <div class="a-block">
+                            <p>The poet repeats phrases like "call the cattle home" to emphasize Mary's task. Repetition of "o'er and o'er the sand" and "cruel crawling foam" highlights the relentless and dangerous nature of the tide and sea.</p>
+                        </div>
+                         <div class="q-block">
+                            <p><strong>3. How has the poet described the sea?</strong></p>
+                        </div>
+                        <div class="a-block">
+                            <p>The poet describes the sea as a relentless and dangerous force. It "crept up along the sand" and its "foam" is characterized as "cruel crawling" and "hungry."</p>
+                        </div>
+                         <div class="q-block">
+                            <p><strong>4. Narrate the story of Mary in your own words.</strong></p>
+                        </div>
+                        <div class="a-block">
+                            <p>Mary went to call the cattle home across the Sands of Dee amidst a wild wind and rising tide. She never returned, tragically drowning in the sea. Her body was later found, and locals say her call for the cattle can still be heard.</p>
+                        </div>
+                        <div class="q-block">
+                            <p><strong>5. Suppose you were walking on the shore while Mary was drowning. What would you do?</strong></p>
+                        </div>
+                        <div class="a-block">
+                            <p>We would immediately try to get Mary's attention and assess the danger. One of us would call for emergency services, and we would try to find something to help her from the shore until professional rescuers arrived.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="gipsyMan" class="tab-content" style="display:none;">
+                 <div class="bg-stone-100 p-6 rounded-lg shadow-md">
+                    <h2 class="text-3xl font-bold mb-1">Time, You Old Gipsy Man</h2>
+                    <p class="text-md text-gray-500 mb-6">Unit 11, Lesson 4</p>
+                    <pre class="whitespace-pre-wrap font-serif text-lg leading-relaxed bg-white p-4 rounded mb-6 shadow-sm">Time, you old gipsy man,
+Will you not stay, Put up your caravan
+Just for a day?
+All things I'll give you,
+Will you be my guest?
+Bells for your jennet Of silver the best, Goldsmiths shall beat you
+A great golden ring,
+Peacocks shall bow to you, Little boys sing.
+Oh, and sweet girls will Festoon you with may Time, you old gipsy, Why hasten away?
+Last week in Babylon, Last night in Rome, Morning, and in the crush Under Paul's dome; Under Paul's dial You tighten your rein-Only a moment And off once again; Off to some city Now blind in the womb, Off to another Ere that's in the tomb.
+Time, you old gipsy man, Will you not stay, Put up your caravan Just for a day?</pre>
+                    <div class="qna-section mt-8">
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-700">Questions & Answers</h3>
+                        <div class="q-block">
+                            <p><strong>1. Why does the poet call time an 'old gipsy man'?</strong></p>
+                        </div>
+                        <div class="a-block">
+                            <p>The poet calls time an 'old gipsy man' because, like a gipsy, time is constantly moving and never stays in one place. It travels from one location and moment to another without settling down.</p>
+                        </div>
+                        <div class="q-block">
+                            <p><strong>2. Make a list of things the poet will offer time if it stays just for a day.</strong></p>
+                        </div>
+                        <div class="a-block">
+                            <p>If time stays for a day, the poet offers: silver bells for its jennet, a great golden ring, peacocks bowing, little boys singing, and sweet girls festooning it with may.</p>
+                        </div>
+                        <div class="q-block">
+                            <p><strong>3. What else can you offer time if it stays for a day?</strong></p>
+                        </div>
+                        <div class="a-block">
+                            <p>If time were to stay for a day, I would offer it moments of profound peace and joy, free from the usual rush, and the opportunity to witness acts of great kindness and beauty.</p>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+
+            <div id="merchantOfVenice" class="tab-content" style="display:none;">
+                <div class="bg-stone-100 p-6 rounded-lg shadow-md space-y-8">
+                    <h2 class="text-3xl font-bold text-center">The Merchant of Venice</h2>
+                    
+                    <article>
+                        <h3 class="text-2xl font-semibold mb-1">Part 1: Antonio and Bassanio's Agreement</h3>
+                        <p class="text-md text-gray-500 mb-4">Unit 11, Lesson 9</p>
+                        <div class="prose max-w-none text-lg leading-relaxed bg-white p-4 rounded shadow-sm">
+                            <p>Once upon a time in Venice, Italy, there was a very rich merchant named Antonio. He had many ships that sailed in the sea. His ships carried different types of merchandise to other countries. He sold those goods there. He bought spices and other valuables from foreign countries and sold them in Venice.</p>
+                            <p>Antonio was a good and kind man. He always helped the poor. The people of Venice loved him very much for his honesty and kindness.</p>
+                            <p>Antonio had a close friend named Bassanio. He was a handsome young man and was born in a noble family. Bassanio liked to live a very luxurious life. He loved grandeur and style. He spent more money than he earned. As a result, he was very often short of money. In such situations, Bassanio would go to his best friend Antonio for help. Antonio would help him with cash.</p>
+                            <p>It so happened that Bassanio fell in love with a wealthy lady named Portia. Portia was known not only for her beauty but also for her wisdom. He wanted to visit Portia in a grand manner but he did not have any money. So he went to Antonio. Bassanio said, "Dear friend Antonio, I am in great need of some money. I would like to visit Portia at Belmont, grandly dressed and with many servants."</p>
+                            <p>Antonio said, "I don't have that much money with me now as all my ships have gone out in the sea with merchandise. But don't worry, my friend, I'll arrange three thousand ducats for you." So he decided to borrow the sum from a moneylender named Shylock. Antonio and Shylock hated each other. Shylock agreed to lend him money but on one condition. If he failed to repay the money in three month's time, Shylock would cut a pound of flesh from any part of Antonio's body. Antonio willingly agreed and signed a bond.</p>
+                        </div>
+                        <div class="qna-section mt-8">
+                            <h4 class="text-xl font-semibold mb-4 text-gray-700">Questions & Answers for Part 1</h4>
+                            <div class="q-block">
+                                <p><strong>1. Why was Bassanio short of money all the time?</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>Bassanio was short of money because he liked to live a very luxurious life and spent more money than he earned.</p>
+                            </div>
+                            <div class="q-block">
+                                <p><strong>2. Why did he go to Antonio?</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>Bassanio went to Antonio because he needed money to visit Portia in a grand manner, and Antonio was his close friend who always helped him with cash.</p>
+                            </div>
+                            <div class="q-block">
+                                <p><strong>3. Why did Antonio go to Shylock?</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>Antonio went to Shylock because he did not have the three thousand ducats Bassanio needed, as all his ships were at sea, and he needed to borrow the sum.</p>
+                            </div>
+                            <div class="q-block">
+                                <p><strong>4. Why did Shylock get a bond signed by Antonio?</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>Shylock got a bond signed to legally bind Antonio to the condition of the loan and the severe penalty if he failed to repay the money.</p>
+                            </div>
+                            <div class="q-block">
+                                <p><strong>5. What was written in the bond?</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>The bond stated that if Antonio failed to repay the loan in three months, Shylock would be allowed to cut a pound of flesh from any part of Antonio's body as a penalty.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <hr class="border-gray-300">
+
+                    <article>
+                        <h3 class="text-2xl font-semibold mb-1">Part 2: The Casket Test</h3>
+                        <p class="text-md text-gray-500 mb-4">Unit 11, Lesson 10</p>
+                        <div class="prose max-w-none text-lg leading-relaxed bg-white p-4 rounded shadow-sm">
+                            <p>Bassanio went to Belmont to visit Portia. Before his death, Portia's father had planned to find a good husband for his daughter. He had three caskets made: one of gold, one of silver, and one of lead. The suitor who chose the casket with Portia's portrait in it would marry her.</p>
+                            <p>The prince of Morocco chose the gold casket, thinking it would hold a precious picture, but found a skull. The prince of Spain chose the silver casket, thinking he would get what he deserved, but found a picture of a fool. Both left disappointed.</p>
+                            <p>Then it was Bassanio's turn. He thought, "Appearances are often misleading," and chose the plain lead casket. On opening it, he found the portrait of Portia inside. Bassanio and Portia got married. But soon their happiness turned into sorrow. A letter came from Antonio saying all his ships were lost and he could not pay Shylock. He asked Bassanio to visit him before he died.</p>
+                        </div>
+                        <div class="qna-section mt-8">
+                            <h4 class="text-xl font-semibold mb-4 text-gray-700">Questions & Answers for Part 2</h4>
+                            <div class="q-block">
+                                <p><strong>1. Why did Portia's father make such a strange plan?</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>Portia's father made this plan to ensure that his daughter would marry a man who loved her for herself, not for her wealth.</p>
+                            </div>
+                             <div class="q-block">
+                                <p><strong>2. Write what you know of the three caskets.</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>There were three caskets: one of gold, one of silver, and one of lead. Portia's portrait was hidden inside one of them, and the suitor who chose correctly would marry her.</p>
+                            </div>
+                             <div class="q-block">
+                                <p><strong>3. How many people attempted to choose the right casket? What was the result?</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>Three people attempted to choose: the Prince of Morocco, the Prince of Spain, and Bassanio. The first two failed, while Bassanio succeeded.</p>
+                            </div>
+                             <div class="q-block">
+                                <p><strong>4. Who succeeded to marry Portia? Why/How?</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>Bassanio succeeded in marrying Portia. He chose the plain lead casket because he believed appearances can be misleading and found Portia's portrait inside.</p>
+                            </div>
+                             <div class="q-block">
+                                <p><strong>5. Why did the joyous mood at Belmont turn sad?</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>The joyous mood turned sad because a letter arrived from Antonio stating his ships were lost, he couldn't pay Shylock, and he would have to pay the fatal penalty.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <hr class="border-gray-300">
+
+                    <article>
+                         <h3 class="text-2xl font-semibold mb-1">Part 3: The Trial</h3>
+                        <p class="text-md text-gray-500 mb-4">Unit 11, Lesson 11</p>
+                        <div class="prose max-w-none text-lg leading-relaxed bg-white p-4 rounded shadow-sm">
+                           <p>The Duke requested Shylock to be merciful, but Shylock refused, demanding his pound of flesh as the law was on his side. Bassanio offered twice the money, but Shylock still refused. The Duke was sorry but could do nothing. Suddenly, a young lawyer, Doctor Balthazar, entered to defend Antonio. This lawyer was actually Portia in disguise.</p>
+                           <p>Portia gave a beautiful speech on mercy, saying it blesses both the giver and receiver, but Shylock paid no heed. She confirmed that the law was on Shylock's side and told Antonio to prepare himself. Delighted, Shylock approached Antonio with a knife. But just as he was about to cut, Portia stopped him. She cried, "Wait! The bond gives you flesh, but no mention of blood. You cannot shed a single drop of blood, or the state will take all your property."</p>
+                           <p>Shylock knew it was impossible. Defeated, he left the courtroom, and Antonio's life was saved.</p>
+                        </div>
+                        <div class="qna-section mt-8">
+                            <h4 class="text-xl font-semibold mb-4 text-gray-700">Questions & Answers for Part 3</h4>
+                            <div class="q-block">
+                                <p><strong>1. Who was Portia? What do you know about her?</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>Portia was a wealthy and wise lady whom Bassanio married. She disguised herself as a young lawyer named Doctor Balthazar to defend Antonio in court.</p>
+                            </div>
+                            <div class="q-block">
+                                <p><strong>2. What did Portia say regarding mercy?</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>Portia stated that mercy "brings a blessing to him who shows it and to him who receives it," and that God will only show mercy to people if they, in turn, show mercy to others.</p>
+                            </div>
+                            <div class="q-block">
+                                <p><strong>3. How did Portia save Antonio's life?</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>Portia saved Antonio's life by pointing out a critical loophole in the bond: it allowed Shylock to take a pound of flesh, but made no mention of shedding blood. She declared that if Shylock shed a single drop of blood, he would lose all his property.</p>
+                            </div>
+                             <div class="q-block">
+                                <p><strong>4. Sketch the character of Antonio.</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>Antonio is portrayed as a kind, generous, and loyal friend. He is a rich merchant who helps the poor and is willing to put his own life at risk to help his friend Bassanio, showing his deep bond and selflessness.</p>
+                            </div>
+                             <div class="q-block">
+                                <p><strong>5. How do you evaluate the character of Shylock?</strong></p>
+                            </div>
+                            <div class="a-block">
+                                <p>Shylock is depicted as a cruel, vengeful, and greedy moneylender. He is unmerciful, refusing all offers of money and insisting on his pound of flesh due to his hatred for Antonio, demonstrating his rigid and malicious nature.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Open the first tab by default
+            document.querySelector('.tab-btn').click();
+        });
+    </script>
+</body>
+</html>
